@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour {
 
 	public GameObject gameOverText;
+	public Text scoreText;
 	public bool gameOver = false;
 	public float scrollSpeed = -1.5f;
 
+	private int score = 0;
 	public static GameControl instance;
 	// Use this for initialization
 
@@ -33,5 +36,13 @@ public class GameControl : MonoBehaviour {
 	public void BirdDied(){
 		gameOverText.SetActive (true);
 		gameOver = true;
+	}
+
+	public void BirdScored(){
+		if (gameOver) {
+			return;
+		}
+		score++;
+		scoreText.text = "Score: " + score.ToString ();
 	}
 }
